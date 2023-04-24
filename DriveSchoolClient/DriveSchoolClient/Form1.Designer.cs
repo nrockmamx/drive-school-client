@@ -92,6 +92,12 @@
             this.button_CardRead = new System.Windows.Forms.Button();
             this.button_FingerRead = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label_status = new System.Windows.Forms.Label();
+            this.label_photo = new System.Windows.Forms.Label();
+            this.label_finger = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.textBox_Trok = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Photo)).BeginInit();
@@ -102,6 +108,7 @@
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_finger)).BeginInit();
             this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // button_SsidSearch
@@ -205,6 +212,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.textBox_Trok);
+            this.groupBox4.Controls.Add(this.label24);
             this.groupBox4.Controls.Add(this.textBox_Provinice);
             this.groupBox4.Controls.Add(this.textBox_Amphor);
             this.groupBox4.Controls.Add(this.textBox_Tumbol);
@@ -418,6 +427,8 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.pictureBox1);
+            this.groupBox7.Controls.Add(this.label_status);
             this.groupBox7.Controls.Add(this.pictureBox_finger);
             this.groupBox7.Controls.Add(this.textBox_Height);
             this.groupBox7.Controls.Add(this.label26);
@@ -506,6 +517,7 @@
             resources.ApplyResources(this.button_FingerRead, "button_FingerRead");
             this.button_FingerRead.Name = "button_FingerRead";
             this.button_FingerRead.UseVisualStyleBackColor = true;
+            this.button_FingerRead.Click += new System.EventHandler(this.button_FingerRead_Click);
             // 
             // groupBox8
             // 
@@ -515,10 +527,45 @@
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.TabStop = false;
             // 
+            // label_status
+            // 
+            resources.ApplyResources(this.label_status, "label_status");
+            this.label_status.ForeColor = System.Drawing.Color.Lime;
+            this.label_status.Name = "label_status";
+            // 
+            // label_photo
+            // 
+            resources.ApplyResources(this.label_photo, "label_photo");
+            this.label_photo.Name = "label_photo";
+            // 
+            // label_finger
+            // 
+            resources.ApplyResources(this.label_finger, "label_finger");
+            this.label_finger.Name = "label_finger";
+            // 
+            // label24
+            // 
+            resources.ApplyResources(this.label24, "label24");
+            this.label24.Name = "label24";
+            // 
+            // textBox_Trok
+            // 
+            resources.ApplyResources(this.textBox_Trok, "textBox_Trok");
+            this.textBox_Trok.Name = "textBox_Trok";
+            this.textBox_Trok.ReadOnly = true;
+            // 
+            // pictureBox1
+            // 
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label_finger);
+            this.Controls.Add(this.label_photo);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox1);
@@ -541,6 +588,7 @@
             this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_finger)).EndInit();
             this.groupBox8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -611,6 +659,12 @@
         private System.Windows.Forms.Button button_CardRead;
         private System.Windows.Forms.Button button_FingerRead;
         private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Label label_status;
+        private System.Windows.Forms.Label label_photo;
+        private System.Windows.Forms.Label label_finger;
+        private System.Windows.Forms.TextBox textBox_Trok;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using DriveSchoolClient.Model.Response;
+﻿using DriveSchoolClient.Model.Request;
+using DriveSchoolClient.Model.Response;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -81,7 +82,7 @@ namespace DriveSchoolClient
                     
 
                 }
-                MessageBox.Show("ค้นหาสำเร็จ", "สำเร็จ");
+                //MessageBox.Show("ค้นหาสำเร็จ", "สำเร็จ");
             }
             else
             {
@@ -122,12 +123,13 @@ namespace DriveSchoolClient
             textBox_Height.Text = "";
             textBox_Qulity.Text = "";
             textBox_BioType.Text = "";
+            label_photo.Text = "";
+            label_finger.Text = "";
 
             pictureBox_finger.Image = null;
         }
 
-        public Bitmap Base64StringToBitmap(string
-                                           base64String)
+        public Bitmap Base64StringToBitmap(string base64String)
         {
             Bitmap bmpReturn = null;
 
@@ -208,6 +210,12 @@ namespace DriveSchoolClient
 
             if(card!=null)
             {
+                if(string.IsNullOrEmpty(card.photo))
+                {
+                    MessageBox.Show("โปรดตรวจสอบบัตรประชาชนว่ามีปัญหาไหม", "ผิดพลาด");
+                    return;
+                }
+
                 textBox_TitleTh.Text = card.title_th;
                 textBox_FnameTh.Text = card.fname_th;
                 textBox_SnameTh.Text = card.sname_th;
@@ -228,14 +236,180 @@ namespace DriveSchoolClient
                 textBox_Moo.Text = card.address_moo;
                 textBox_Provinice.Text = card.address_provinice;
                 textBox_Road.Text = card.address_road;
+                textBox_Trok.Text = card.address_trok;
 
                 textBox_Ssid.Text = card.nat_id;
 
                 var bitMap = Base64StringToBitmap(card.photo);
 
                 pictureBox_Photo.Image = (Image)bitMap;
-                MessageBox.Show("โปรดวางนิ้วและกดปุ่มแสกนลายนิ้วมือ", "สำเร็จ");
+                label_photo.Text = card.photo;
+                MessageBox.Show("โปรดกดปุ่มแสกนนิ้วและรีบวางนิ้วมือลงไปขึ้นลง 3 ครั้ง", "สำเร็จ");
             }
         }
+
+        private async void button_FingerRead_Click(object sender, EventArgs e)
+        {
+            label_status.Visible = true;
+            var client = new RestClient("http://localhost:22001");
+            var request = new RestRequest($"zkbioonline/fingerprint/beginCapture?type=2&FakeFunOn=1");
+
+            var res = await client.ExecuteGetAsync(request);
+
+            if (!res.IsSuccessful)
+            {
+                MessageBox.Show("โปรดลง Driver เครื่อง แสกนนิ้ว", "ผิดพลาด");
+                await cancle_Finger();
+                return;
+            }
+
+            await Task.Delay(1000);
+
+            client = new RestClient("http://localhost:22001");
+            request = new RestRequest($"zkbioonline/fingerprint/getTemplate");
+
+            for (int i = 0; i < 20; i++)
+            {
+                res = await client.ExecuteGetAsync(request);
+
+                if (res.IsSuccessful && res.Content.Contains("biotype"))
+                {
+                    break;
+                }
+                await Task.Delay(1000);
+            }
+
+            if (!res.IsSuccessful)
+            {
+                MessageBox.Show("โปรดลง Driver เครื่อง แสกนนิ้ว", "ผิดพลาด");
+                await cancle_Finger();
+                return;
+            }
+
+            if (res.Content.Contains("please press finger"))
+            {
+                MessageBox.Show("โปรดกดปุ่มแสกนนิ้วและรีบวางนิ้วมือลงไปขึ้นลง 3 ครั้ง", "ผิดพลาด");
+                await cancle_Finger();
+                return;
+            }
+
+            await Task.Delay(1000);
+
+            int count = 0;
+            request = new RestRequest($"zkbioonline/fingerprint/getImage");
+
+            for (int i = 0; i < 20; i++)
+            {
+
+                res = await client.ExecuteGetAsync(request);
+
+                if(res.IsSuccessful && res.Content.Contains("biotype"))
+                {
+                    break;
+                }
+            }
+
+            if(res.Content.Contains("please press finger"))
+            {
+                MessageBox.Show("โปรดกดปุ่มแสกนนิ้วและรีบวางนิ้วมือลงไปขึ้นลง 3 ครั้ง", "ผิดพลาด");
+                await cancle_Finger();
+                return;
+            }
+            else
+            {
+                var baseResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<BaseResponse>(res.Content.ToString());
+                var finger = baseResponse.GetData<FingerClass>();
+                textBox_BioType.Text = finger.biotype.ToString();
+                textBox_EnrollIndex.Text = finger.enroll_index.ToString();
+                textBox_Qulity.Text = finger.quality.ToString();
+                textBox_Height.Text = finger.height.ToString();
+                textBox_Witdth.Text = finger.witdth.ToString();
+                label_finger.Text = finger.jpg_base64;
+                var bitMap = Base64StringToBitmap(finger.jpg_base64);
+                Size size = new Size(300, 300);
+
+                pictureBox_finger.Image = resizeImage((Image)bitMap, size);
+
+                await SaveCard();
+                await SaveFinger();
+
+                MessageBox.Show("บันทึกข้อมูลสำเร็จ", "สำเร็จ");
+
+                await cancle_Finger();
+            }
+        }
+
+        public async Task cancle_Finger()
+        {
+            var client = new RestClient("http://localhost:22001");
+            var request = new RestRequest($"zkbioonline/fingerprint/cancelCapture");
+
+            var res = await client.ExecuteGetAsync(request);
+            label_status.Visible = false;
+           
+        }
+
+        public async Task<bool> SaveFinger()
+        {
+            AddFinger addFinger = new AddFinger();
+            addFinger.height = Convert.ToInt64(textBox_Height.Text);
+            addFinger.witdth = Convert.ToInt64(textBox_Witdth.Text);
+            addFinger.jpg_base64 = label_finger.Text;
+            addFinger.enroll_index = Convert.ToInt64(textBox_EnrollIndex.Text);
+            addFinger.biotype = Convert.ToInt64(textBox_BioType.Text);
+            addFinger.nat_id = textBox_Ssid.Text;
+
+            var client = new RestClient(_url);
+            var request = new RestRequest($"v1/add-finger");
+            request.AddBody(addFinger);
+
+            var res = await client.ExecutePostAsync(request);
+
+            if (res.IsSuccessful)
+                return true;
+
+            return false;
+        }
+        public async Task<bool> SaveCard()
+        {
+            AddCard addCard = new AddCard();
+            addCard.title_th = textBox_TitleTh.Text;
+            addCard.fname_th = textBox_FnameTh.Text;
+            addCard.sname_th = textBox_SnameTh.Text;
+            addCard.mname_th = textBox_MnameTh.Text;
+
+            addCard.title_en = textBox_TitleEn.Text;
+            addCard.fname_en = textBox_FnameEn.Text;
+            addCard.sname_en = textBox_SnameEn.Text;
+            addCard.mname_en = textBox_MnameEn.Text;
+
+            addCard.address_amphor = textBox_Amphor.Text;
+            addCard.birthdate = textBox_BirthDate.Text;
+            addCard.gender = textBox_Gender.Text;
+            addCard.issuer = textBox_Issue.Text;
+            addCard.address_tumbol = textBox_Tumbol.Text;
+            addCard.address_soi = textBo_Soi.Text;
+            addCard.address_no = textBox_No.Text;
+            addCard.address_moo = textBox_Moo.Text;
+            addCard.address_provinice = textBox_Provinice.Text;
+            addCard.address_road = textBox_Road.Text;
+            addCard.nat_id = textBox_Ssid.Text;
+            addCard.photo = label_photo.Text;
+            addCard.address_trok = textBox_Trok.Text;
+            addCard.nat_id = textBox_Ssid.Text;
+
+            var client = new RestClient(_url);
+            var request = new RestRequest($"v1/add-card");
+            request.AddBody(addCard);
+
+            var res = await client.ExecutePostAsync(request);
+
+            if (res.IsSuccessful)
+                return true;
+
+            return false;
+        }
     }
+
+ 
 }

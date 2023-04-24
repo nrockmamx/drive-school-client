@@ -10,3 +10,8 @@ DriveSchoolClient/DriveSchoolClient/obj/
 *.p7s
 
 DriveSchoolClient/packages/
+DriveSchoolClient/DriveSchoolServer/obj/Release/
+
+Setup/Client/
+
+DriveSchoolClient/DriveSchoolServer/obj/Debug/

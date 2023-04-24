@@ -87,8 +87,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Request\AddCard.cs" />
+    <Compile Include="Model\Request\AddFinger.cs" />
     <Compile Include="Model\Response\BaseResponse.cs" />
     <Compile Include="Model\Response\GetIdenResponse.cs" />
+    <Compile Include="Model\Response\GetTemplateResponse.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
