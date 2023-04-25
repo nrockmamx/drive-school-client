@@ -1,8 +1,7 @@
-﻿namespace DriveSchoolClient.Model.Request
+﻿namespace DriveSchoolServer.Model.Response.Finger
 {
-    public class AddFinger
+    public class GetImageResponse
     {
-        public string nat_id { get; set; }
         public long biotype { get; set; }
         public long enroll_index { get; set; }
         public long quality { get; set; }

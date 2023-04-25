@@ -23,5 +23,7 @@
         public string birthdate { get; set; }
         public string issuer { get; set; }
         public string photo { get; set; }
+        public string issue_date { get; set; }
+        public string issue_expire { get; set; }
     }
 }

@@ -1,30 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DriveSchoolClient.Model.Response
+﻿namespace DriveSchoolServer.Model.Response.Card
 {
-
-    public class GetIdenResponse
+    public class ReadCardResponse
     {
-        public CardClass card { get; set; }
-        public FingerClass finger { get; set; }
-    }
-    public class FingerClass
-    {
-        public string nat_id { get; set; }
-        public long biotype { get; set; }
-        public long enroll_index { get; set; }
-        public long quality { get; set; }
-        public long witdth { get; set; }
-        public long height { get; set; }
-        public string jpg_base64 { get; set; }
-        public string template { get; set; }
-    }
-    public class CardClass
-    {
+        public string result { get; set; } = "ok";
+        public string read_date { get; set; } = "";
+        public string read_time { get; set; } = "";
         public string nat_id { get; set; }
         public string title_th { get; set; }
         public string fname_th { get; set; }

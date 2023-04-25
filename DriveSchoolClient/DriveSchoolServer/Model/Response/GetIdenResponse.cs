@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DriveSchoolClient.Model.Response
+namespace DriveSchoolServer.Model.Response
 {
 
     public class GetIdenResponse

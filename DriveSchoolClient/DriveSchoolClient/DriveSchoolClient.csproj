@@ -87,6 +87,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalVar.cs" />
     <Compile Include="Model\Request\AddCard.cs" />
     <Compile Include="Model\Request\AddFinger.cs" />
     <Compile Include="Model\Response\BaseResponse.cs" />

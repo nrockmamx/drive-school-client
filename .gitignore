@@ -15,3 +15,9 @@ DriveSchoolClient/DriveSchoolServer/obj/Release/
 Setup/Client/
 
 DriveSchoolClient/DriveSchoolServer/obj/Debug/
+
+DriveSchoolClient/DriveSchoolServer/bin/Debug/
+
+DriveSchoolClient/DriveSchoolServer/bin/Release/
+
+DriveSchoolClient/DriveSchoolServer/obj/

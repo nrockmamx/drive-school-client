@@ -45,6 +45,8 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.textBox_Trok = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.textBox_Provinice = new System.Windows.Forms.TextBox();
             this.textBox_Amphor = new System.Windows.Forms.TextBox();
             this.textBox_Tumbol = new System.Windows.Forms.TextBox();
@@ -78,6 +80,8 @@
             this.textBox_TitleTh = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label_status = new System.Windows.Forms.Label();
             this.pictureBox_finger = new System.Windows.Forms.PictureBox();
             this.textBox_Height = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
@@ -92,12 +96,13 @@
             this.button_CardRead = new System.Windows.Forms.Button();
             this.button_FingerRead = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.label_status = new System.Windows.Forms.Label();
             this.label_photo = new System.Windows.Forms.Label();
             this.label_finger = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.textBox_Trok = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label_template = new System.Windows.Forms.Label();
+            this.textBox_issue_expire = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.textBox_issue_date = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Photo)).BeginInit();
@@ -106,9 +111,9 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_finger)).BeginInit();
             this.groupBox8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // button_SsidSearch
@@ -154,6 +159,10 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.textBox_issue_date);
+            this.groupBox5.Controls.Add(this.label28);
+            this.groupBox5.Controls.Add(this.textBox_issue_expire);
+            this.groupBox5.Controls.Add(this.label27);
             this.groupBox5.Controls.Add(this.textBox_Ssid);
             this.groupBox5.Controls.Add(this.label20);
             this.groupBox5.Controls.Add(this.textBox_Issue);
@@ -231,6 +240,17 @@
             resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
+            // 
+            // textBox_Trok
+            // 
+            resources.ApplyResources(this.textBox_Trok, "textBox_Trok");
+            this.textBox_Trok.Name = "textBox_Trok";
+            this.textBox_Trok.ReadOnly = true;
+            // 
+            // label24
+            // 
+            resources.ApplyResources(this.label24, "label24");
+            this.label24.Name = "label24";
             // 
             // textBox_Provinice
             // 
@@ -444,6 +464,18 @@
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.TabStop = false;
             // 
+            // pictureBox1
+            // 
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            // 
+            // label_status
+            // 
+            resources.ApplyResources(this.label_status, "label_status");
+            this.label_status.ForeColor = System.Drawing.Color.Lime;
+            this.label_status.Name = "label_status";
+            // 
             // pictureBox_finger
             // 
             resources.ApplyResources(this.pictureBox_finger, "pictureBox_finger");
@@ -527,12 +559,6 @@
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.TabStop = false;
             // 
-            // label_status
-            // 
-            resources.ApplyResources(this.label_status, "label_status");
-            this.label_status.ForeColor = System.Drawing.Color.Lime;
-            this.label_status.Name = "label_status";
-            // 
             // label_photo
             // 
             resources.ApplyResources(this.label_photo, "label_photo");
@@ -543,27 +569,38 @@
             resources.ApplyResources(this.label_finger, "label_finger");
             this.label_finger.Name = "label_finger";
             // 
-            // label24
+            // label_template
             // 
-            resources.ApplyResources(this.label24, "label24");
-            this.label24.Name = "label24";
+            resources.ApplyResources(this.label_template, "label_template");
+            this.label_template.Name = "label_template";
             // 
-            // textBox_Trok
+            // textBox_issue_expire
             // 
-            resources.ApplyResources(this.textBox_Trok, "textBox_Trok");
-            this.textBox_Trok.Name = "textBox_Trok";
-            this.textBox_Trok.ReadOnly = true;
+            resources.ApplyResources(this.textBox_issue_expire, "textBox_issue_expire");
+            this.textBox_issue_expire.Name = "textBox_issue_expire";
+            this.textBox_issue_expire.ReadOnly = true;
             // 
-            // pictureBox1
+            // label27
             // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
+            resources.ApplyResources(this.label27, "label27");
+            this.label27.Name = "label27";
+            // 
+            // textBox_issue_date
+            // 
+            resources.ApplyResources(this.textBox_issue_date, "textBox_issue_date");
+            this.textBox_issue_date.Name = "textBox_issue_date";
+            this.textBox_issue_date.ReadOnly = true;
+            // 
+            // label28
+            // 
+            resources.ApplyResources(this.label28, "label28");
+            this.label28.Name = "label28";
             // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label_template);
             this.Controls.Add(this.label_finger);
             this.Controls.Add(this.label_photo);
             this.Controls.Add(this.groupBox8);
@@ -586,9 +623,9 @@
             this.groupBox2.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_finger)).EndInit();
             this.groupBox8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -665,6 +702,11 @@
         private System.Windows.Forms.TextBox textBox_Trok;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label_template;
+        private System.Windows.Forms.TextBox textBox_issue_date;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox textBox_issue_expire;
+        private System.Windows.Forms.Label label27;
     }
 }
 

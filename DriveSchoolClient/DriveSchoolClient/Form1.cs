@@ -60,6 +60,8 @@ namespace DriveSchoolClient
                     textBox_Moo.Text = iden.card.address_moo;
                     textBox_Provinice.Text = iden.card.address_provinice;
                     textBox_Road.Text = iden.card.address_road;
+                    textBox_issue_date.Text = iden.card.issue_date;
+                    textBox_issue_expire.Text = iden.card.issue_expire;
 
                     textBox_Ssid.Text = iden.card.nat_id;
 
@@ -114,7 +116,8 @@ namespace DriveSchoolClient
             textBox_Moo.Text = "";
             textBox_Provinice.Text = "";
             textBox_Road.Text = "";
-
+            textBox_issue_expire.Text = "";
+            textBox_issue_date.Text = "";
             textBox_Ssid.Text = "";
             pictureBox_Photo.Image = null;
 
@@ -125,6 +128,7 @@ namespace DriveSchoolClient
             textBox_BioType.Text = "";
             label_photo.Text = "";
             label_finger.Text = "";
+            label_template.Text = "";
 
             pictureBox_finger.Image = null;
         }
@@ -237,6 +241,9 @@ namespace DriveSchoolClient
                 textBox_Provinice.Text = card.address_provinice;
                 textBox_Road.Text = card.address_road;
                 textBox_Trok.Text = card.address_trok;
+                textBox_issue_date.Text = card.issue_date;
+                textBox_issue_expire.Text = card.issue_expire;
+                
 
                 textBox_Ssid.Text = card.nat_id;
 
@@ -274,6 +281,14 @@ namespace DriveSchoolClient
 
                 if (res.IsSuccessful && res.Content.Contains("biotype"))
                 {
+                    var baseResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<BaseResponse>(res.Content.ToString());
+                    var template = baseResponse.GetData<GetTemplateResponse>();
+
+                    if (template != null)
+                    {
+                        label_template.Text = template.template;
+                    }
+
                     break;
                 }
                 await Task.Delay(1000);
@@ -305,6 +320,7 @@ namespace DriveSchoolClient
 
                 if(res.IsSuccessful && res.Content.Contains("biotype"))
                 {
+
                     break;
                 }
             }
@@ -358,6 +374,7 @@ namespace DriveSchoolClient
             addFinger.enroll_index = Convert.ToInt64(textBox_EnrollIndex.Text);
             addFinger.biotype = Convert.ToInt64(textBox_BioType.Text);
             addFinger.nat_id = textBox_Ssid.Text;
+            addFinger.template = label_template.Text;
 
             var client = new RestClient(_url);
             var request = new RestRequest($"v1/add-finger");
@@ -397,6 +414,8 @@ namespace DriveSchoolClient
             addCard.photo = label_photo.Text;
             addCard.address_trok = textBox_Trok.Text;
             addCard.nat_id = textBox_Ssid.Text;
+            addCard.issue_date = textBox_issue_date.Text;
+            addCard.issue_expire = textBox_issue_expire.Text;
 
             var client = new RestClient(_url);
             var request = new RestRequest($"v1/add-card");
