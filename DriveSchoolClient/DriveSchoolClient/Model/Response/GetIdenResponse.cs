@@ -11,6 +11,7 @@ namespace DriveSchoolClient.Model.Response
     {
         public CardClass card { get; set; }
         public FingerClass finger { get; set; }
+        public string ssid { get; set; }
     }
     public class FingerClass
     {

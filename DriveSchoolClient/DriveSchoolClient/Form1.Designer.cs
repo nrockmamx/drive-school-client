@@ -36,6 +36,10 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.pictureBox_Photo = new System.Windows.Forms.PictureBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.textBox_issue_date = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.textBox_issue_expire = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.textBox_Ssid = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.textBox_Issue = new System.Windows.Forms.TextBox();
@@ -99,10 +103,7 @@
             this.label_photo = new System.Windows.Forms.Label();
             this.label_finger = new System.Windows.Forms.Label();
             this.label_template = new System.Windows.Forms.Label();
-            this.textBox_issue_expire = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.textBox_issue_date = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
+            this.button_otherIden = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Photo)).BeginInit();
@@ -174,6 +175,28 @@
             resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
+            // 
+            // textBox_issue_date
+            // 
+            resources.ApplyResources(this.textBox_issue_date, "textBox_issue_date");
+            this.textBox_issue_date.Name = "textBox_issue_date";
+            this.textBox_issue_date.ReadOnly = true;
+            // 
+            // label28
+            // 
+            resources.ApplyResources(this.label28, "label28");
+            this.label28.Name = "label28";
+            // 
+            // textBox_issue_expire
+            // 
+            resources.ApplyResources(this.textBox_issue_expire, "textBox_issue_expire");
+            this.textBox_issue_expire.Name = "textBox_issue_expire";
+            this.textBox_issue_expire.ReadOnly = true;
+            // 
+            // label27
+            // 
+            resources.ApplyResources(this.label27, "label27");
+            this.label27.Name = "label27";
             // 
             // textBox_Ssid
             // 
@@ -574,32 +597,18 @@
             resources.ApplyResources(this.label_template, "label_template");
             this.label_template.Name = "label_template";
             // 
-            // textBox_issue_expire
+            // button_otherIden
             // 
-            resources.ApplyResources(this.textBox_issue_expire, "textBox_issue_expire");
-            this.textBox_issue_expire.Name = "textBox_issue_expire";
-            this.textBox_issue_expire.ReadOnly = true;
-            // 
-            // label27
-            // 
-            resources.ApplyResources(this.label27, "label27");
-            this.label27.Name = "label27";
-            // 
-            // textBox_issue_date
-            // 
-            resources.ApplyResources(this.textBox_issue_date, "textBox_issue_date");
-            this.textBox_issue_date.Name = "textBox_issue_date";
-            this.textBox_issue_date.ReadOnly = true;
-            // 
-            // label28
-            // 
-            resources.ApplyResources(this.label28, "label28");
-            this.label28.Name = "label28";
+            resources.ApplyResources(this.button_otherIden, "button_otherIden");
+            this.button_otherIden.Name = "button_otherIden";
+            this.button_otherIden.UseVisualStyleBackColor = true;
+            this.button_otherIden.Click += new System.EventHandler(this.button_otherIden_Click);
             // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button_otherIden);
             this.Controls.Add(this.label_template);
             this.Controls.Add(this.label_finger);
             this.Controls.Add(this.label_photo);
@@ -707,6 +716,7 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TextBox textBox_issue_expire;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Button button_otherIden;
     }
 }
 
